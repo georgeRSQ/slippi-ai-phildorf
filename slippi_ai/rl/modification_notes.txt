@@ -1,3 +1,9 @@
+PROBABLY WILL SWITCH TO RATINGS_EMBED BRANCH, USES MAINLY JAX FOLDER/LIB CODE
+
+For dolphin instances when training at scale, use this modified headless ishiiruka with exi fastforward: https://github.com/vladfi1/slippi-Ishiiruka/tree/exi-ai-rebase
+And this ML-oriented fork of libmelee: https://github.com/vladfi1/libmelee
+
+
 #Modified IL grading function:
 data_rep_coeff * rank_coeff * manual_grade * outcome_mult
 
@@ -24,6 +30,18 @@ e.g.,
 MEKK: representing ~80% of available labelled replays has coeff
 0.36 [data rep] * 1 [NET_FIEND label] * 1.8 [rank coeff assuming an average match is 2500 vs 2300] * 1 [outcome coeff assuming average stock diff ~+1] = ~0.65
 And thus will likely make up ~50% of total training weight
+
+In reward.py, consider slightly increasing approaching, anti-stall, and anti-ledgegrab factors from their default zero to match their values in the ratings-embed fork (used in current state of the art Phillip agents), as these are likely high value but undesirable strategies and will be significantly represented in the initial imitation dataset.
+
+
+#TODO
+
+Structure alternating phases of train_two simultaneous training and solo training against historical checkpoint models.
+Get a grip on the batching (is it terms of games or frames, etc)
+Manually generate TAS games showing punish theory and tech setups to include in the dataset with high manually flagged weights
+Use the mirror.py function to mirror replays for imitation by default when they are being preprocessed?
+
+
 
 
 
