@@ -1,0 +1,30 @@
+#Modified IL grading function:
+data_rep_coeff * rank_coeff * manual_grade * outcome_mult
+
+
+
+Outcome_mult: //treat 3 and 4 stocks as the same, since garbage replays will overrepresent 4-stocks and either is a comically large margin in a competitively-matched game
+  0.7 + 0.2 if stocks remaining >= 1 + 0.1 * (max of stocks_remaining or 3) 
+
+Rank_coeff:
+  0.3 + (sum_peak_elo - 3000)/2000 + (charOI_eloxe_2800 * 2)
+  Where charOI_eloxe_2800 = 1 / (1 + 10*( (2800 - peak_elo) / 400))
+
+data_rep_coeff:
+  1 - (player_replays/total_replays)^2
+
+manual_grade:
+  OLD_SCHOOL: 1.2
+  ROBUST_MODERN: 1.4
+  NET_FIEND: 1
+  MID_LVL: 0.8
+  SCRAP: 0.6
+  
+e.g.,
+MEKK: representing ~80% of available labelled replays has coeff
+0.36 [data rep] * 1 [NET_FIEND label] * 1.8 [rank coeff assuming an average match is 2500 vs 2300] * 1 [outcome coeff assuming average stock diff ~+1] = ~0.65
+And thus will likely make up ~50% of total training weight
+
+
+
+
