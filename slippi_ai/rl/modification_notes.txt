@@ -16,15 +16,19 @@ Rank_coeff:
   0.3 + (sum_peak_elo - 3000)/2000 + (charOI_eloxe_2800 * 2)
   Where charOI_eloxe_2800 = 1 / (1 + 10*( (2800 - peak_elo) / 400))
 
+  Replays without rank data assume ELO 1800 (lowest included in dataset)
+
 data_rep_coeff:
   1 - (player_replays/total_replays)^2
 
-manual_grade:
-  OLD_SCHOOL: 1.2
+manual_grade = {
+  LESSON: 4
   ROBUST_MODERN: 1.4
+  OLD_SCHOOL: 1.2
   NET_FIEND: 1
   MID_LVL: 0.8
   SCRAP: 0.6
+}
   
 e.g.,
 MEKK: representing ~80% of available labelled replays has coeff
