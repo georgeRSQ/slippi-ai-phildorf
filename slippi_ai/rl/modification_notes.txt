@@ -36,8 +36,10 @@ In reward.py, consider slightly increasing approaching, anti-stall, and anti-led
 
 #TODO
 
+Implement replay weighting (maybe policy_learner.py?)
 Structure alternating phases of train_two simultaneous training and solo training against historical checkpoint models.
 Get a grip on the batching (is it terms of games or frames, etc)
+  Appears to be in terms of games
 Manually generate TAS games showing punish theory and tech setups to include in the dataset with high manually flagged weights
 Use the mirror.py function to mirror replays for imitation by default when they are being preprocessed?
 
