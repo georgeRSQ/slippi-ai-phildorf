@@ -25,14 +25,14 @@ manual_grade = {
   LESSON: 4
   ROBUST_MODERN: 1.4
   OLD_SCHOOL: 1.2
-  NET_FIEND: 1
+  STRONG_MORON: 1
   MID_LVL: 0.8
   SCRAP: 0.6
 }
   
 e.g.,
 MEKK: representing ~80% of available labelled replays has coeff
-0.36 [data rep] * 1 [NET_FIEND label] * 1.8 [rank coeff assuming an average match is 2500 vs 2300] * 1 [outcome coeff assuming average stock diff ~+1] = ~0.65
+0.36 [data rep] * 1 [STRONG_MORON label] * 1.8 [rank coeff assuming an average match is 2500 vs 2300] * 1 [outcome coeff assuming average stock diff ~+1] = ~0.65
 And thus will likely make up ~50% of total training weight
 
 In reward.py, consider slightly increasing approaching, anti-stall, and anti-ledgegrab factors from their default zero to match their values in the ratings-embed fork (used in current state of the art Phillip agents), as these are likely high value but undesirable strategies and will be significantly represented in the initial imitation dataset.
@@ -51,6 +51,7 @@ Manually generate TAS games showing punish theory and tech setups to include in 
 Use the mirror.py function to mirror replays for imitation by default when they are being preprocessed? This appears to be implemented already in data.py based on the "mirror" config flag
 
 Instead of changing the policy update function with some weighting, maybe just file away weight coefficients for each training replay during preprocessing, then use the weight as a relative probability of that replay being pulled for training use? Or simply run a first pass to generate multiple datasets: the full one and then ones to be used every so-many epochs to get the proportions right.
+
 
 
 
